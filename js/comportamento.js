@@ -36,12 +36,13 @@ function jogar(id, posicao) {
             id.style.backgroundImage = "url('img/x.png')";
             matriz[posicao] = 1;
             rodada++;
+
             if(modoAI) {
                 if (vitoria(matriz, 1) || vitoria(matriz, -1) || empate(matriz)) return;
-                let posicaoAI = minimax(matriz, -1, 0);
-                console.log("f");
-                console.log(posicaoAI);
-                document.getElementById("m" + posicaoAI[1]).style.backgroundImage = "url('img/o.png')";
+                let posicaoAI = minimax(matriz, -1, 0);     
+
+                setTimeout(() => document.getElementById("m" + posicaoAI[1]).style.backgroundImage = "url('img/o.png')", 500);
+
                 matriz[posicaoAI[1]] = -1;
                 rodada++;
             }
@@ -56,12 +57,9 @@ function jogar(id, posicao) {
             rodada++;
         }
     }
-
-
     vitoria(matriz, 1);
     vitoria(matriz, -1);
     empate(matriz);
-
 }
 
 function vitoria(jogo, jogador) {
@@ -142,7 +140,6 @@ function novoJogo() {
 
 function qtdVitoria(jogador) {
     jogabilidade = false;
-    document.getElementById('numeroJogos').innerHTML = n_jogos;
 
     switch (jogador) {
         case 1:
